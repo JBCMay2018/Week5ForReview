@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:replace="base :: head-source"></head>
+<body>
+<nav th:replace="base :: main-navbar"></nav>
+
+<div class="container">
+    <div class="row">
+        <div th:each="oneMeme : ${memes}" class="col-4 card" style="width: 20rem;">
+            <img class="card-img-top" th:src="(${oneMeme.pictureUrl}!=null)?${oneMeme.pictureUrl}:'/img/placeholder.png'" />
+            <div class="card-body">
+                <h5 class="card-title" th:text="${oneMeme.topCaption}"></h5>
+                <h6 class="card-subtitle mb-2 text-muted" th:text="${oneMeme.bottomCaption}"></h6>
+                <div>
+                    <span class="card-text" th:text="${oneMeme.shortDescription}"></span>
+                    <span><a th:href="@{/detail/{id}(id=${oneMeme.id})}">View More</a></span>
+                </div>
+                <br/>
+                <a th:href="@{/like/{id}(id=${oneMeme.id})}"><img src="img/heart.png" width="25" height="25"/></a> <br/>
+                <strong><span th:text="${oneMeme.likeCount}"></span> likes </strong><br/>
+                <small th:text="${oneMeme.postDate}"></small> <br/>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<footer th:replace="base :: footer"></footer>
+<div th:replace="base :: scripts"></div>
+
+</body>
+</html>

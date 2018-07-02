@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org ">
+<head th:replace="base :: head-source">
+</head>
+<body>
+<nav th:replace="base :: main-navbar"></nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-2">&nbsp;</div>
+        <div class="col-8">
+            <h3>Add a Meme</h3>
+            <form method="POST" action="/add" th:object="${meme}" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input type="hidden" th:field="*{id}" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="topInput">Top Caption</label>
+                    <input type="text" th:field="*{topCaption}" class="form-control" id="topInput" placeholder="Enter caption" />
+                    <span th:if="${#fields.hasErrors('topCaption')}" th:errors="*{topCaption}"></span>
+                </div>
+                <div class="form-group">
+                    <label for="bottomInput">Bottom Caption</label>
+                    <input type="text" th:field="*{bottomCaption}" class="form-control" id="bottomInput" placeholder="Enter caption" />
+                    <span th:if="${#fields.hasErrors('bottomCaption')}" th:errors="*{bottomCaption}"></span>
+                </div>
+                <div class="form-group">
+                    <label for="descriptionInput">Description</label>
+                    <textarea row="3" th:field="*{description}" class="form-control" id="descriptionInput" placeholder="Enter description" />
+                    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+                </div>
+                <div class="form-group">
+                    <label for="fileInput">Image</label>
+                    <input class="form-control" id="fileInput" type="file" name="file" />
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+            </form>
+        </div>
+        <div class="col-2">&nbsp;</div>
+    </div>
+</div>
+
+
+<footer th:replace="base :: footer"></footer>
+<div th:replace="base :: scripts"></div>
+</body>
+</html>

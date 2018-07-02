@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:replace="base :: head-source">
+</head>
+<body>
+<nav th:replace="base :: main-navbar"></nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-3">&nbsp;</div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header" th:text="${meme.topCaption}"></div>
+                <img th:src="${meme.pictureUrl}" width="100%"/>
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${meme.bottomCaption}"></h5>
+                    <p class="card-text" th:text="${meme.description}"></p>
+                    <strong><span th:text="${meme.likeCount}"></span> likes </strong><br/>
+                    <small th:text="${meme.postDate}"></small> <br/>
+                    <a class="btn btn-info btn-sm" th:href="@{/update/{id}(id=${meme.id})}">Update</a>
+                    <a class="btn btn-danger btn-sm" th:href="@{/delete/{id}(id=${meme.id})}">Delete</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">&nbsp;</div>
+    </div>
+</div>
+
+<footer th:replace="base :: footer"></footer>
+<div th:replace="base :: scripts"></div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:fragment="head-source">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>MEMEgram</title>
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+
+</head>
+<body>
+
+<nav class="navbar navbar-light bg-light" th:fragment="main-navbar">
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="/">
+            <img src="/img/memelogo.png" width="30" height="30" class="d-inline-block align-top" alt="memegram"/>
+        <span class="navbar-brand mb-0 h1">&nbsp; MEMEgram</span></a>
+    </nav>
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/add">Add</a>
+        </li>
+    </ul>
+</nav>
+
+<footer th:fragment="footer">
+    <div class="container">
+        <hr/>
+        <span class="text-muted">&copy; 2018 Nguyen, made with soft pears</span>
+    </div>
+</footer>
+
+
+<div th:fragment="scripts">
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.3.2.1.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+</div>
+
+</body>
+</html>
