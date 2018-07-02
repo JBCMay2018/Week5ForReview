@@ -38,37 +38,29 @@ public class HomeController {
     }
 
     @PostMapping("/add")
-    public String processMeme(@Valid @ModelAttribute("meme") Meme meme, BindingResult result,
+    public String processMeme(@Valid @ModelAttribute("meme") Meme meme,
                               @RequestParam("file") MultipartFile file) {
         if (file.isEmpty()) {
-            System.out.println("Can't process with no photo...");
-            //meme.setPictureUrl("/img/placeholder.png");
+            System.out.println("File is empty...");
             return "redirect:/add";
         }
-        if (!result.hasErrors()) {
-            try {
-                Map uploadResult = cloudc.upload(file.getBytes(), ObjectUtils.asMap("resourcetype", "auto"));
-                meme.setPictureUrl(uploadResult.get("url").toString());
+        try {
+            Map uploadResult = cloudc.upload(file.getBytes(), ObjectUtils.asMap("resourcetype", "auto"));
+            meme.setPictureUrl(uploadResult.get("url").toString());
 
-                // Implement the more than 20 characters
-                meme.setShortDescription(meme.moreThan20(meme.getDescription()));
+            // Implement the more than 20 characters
+            meme.setShortDescription(meme.moreThan20(meme.getDescription()));
 
-                // Set the date to the current time
-                LocalDate currDate = LocalDate.now();
-                meme.setPostDate(currDate);
+            // Set the date to the current time
+            LocalDate currDate = LocalDate.now();
+            meme.setPostDate(currDate);
 
-                memeRepository.save(meme);
-            } catch (IOException e) {
-                e.printStackTrace();
-                return "redirect:/add";
-            }
-            System.out.println("There is no error...");
-            return "redirect:/";
+            memeRepository.save(meme);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "redirect:/add";
         }
-        else {
-            System.out.println("There is an error...");
-            return "form";
-        }
+        return "redirect:/";
     }
 
     @RequestMapping("/detail/{id}")

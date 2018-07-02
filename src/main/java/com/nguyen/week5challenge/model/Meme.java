@@ -18,20 +18,12 @@ public class Meme {
 
     private String pictureUrl;
 
-    @NotNull
-    @Size(min=1, max=50)
     private String topCaption;
 
-    @NotNull
-    @Size(min=1, max=50)
     private String bottomCaption;
 
-    @NotNull
-    @Size(min=1, max=200)
     private String description;
 
-    @NotNull
-    @Size(min=1, max=100)
     private String shortDescription;
 
     private int likeCount;

@@ -39,13 +39,4 @@ public class CloudinaryConfig {
                         .width(width).height(height).border("2px_solid_black").crop(action))
                 .imageTag(name);
     }
-
-    public String createSameSize(String url, int width, int height)
-    {
-        //Creates a transformation from the URL provided
-        return cloudinary.url().transformation(new Transformation()
-                .width(width).height(height)
-                .crop("fill").radius(50).gravity("face")).type("fetch").generate(url);
-
-    }
 }
